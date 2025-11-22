@@ -76,6 +76,35 @@ pipeline {
             }
         }
         
+        stage('Build App Code') {
+            steps {
+                script {
+                    echo "============================================"
+                    echo "Building TypeScript Lambda code"
+                    echo "============================================"
+                }
+                dir('customer-reviews-app') {
+                    sh '''
+                        npm install
+                        npm run build
+                        echo "TypeScript compilation completed"
+                        
+                        # Copy node_modules to dist for Lambda runtime
+                        echo "Copying node_modules to dist..."
+                        cp -r node_modules dist/ || echo "node_modules copy failed"
+                        
+                        # Copy node_modules to dist/mock-api for mock API Lambda
+                        mkdir -p dist/mock-api
+                        cp -r node_modules dist/mock-api/ || echo "mock-api node_modules copy failed"
+                        
+                        echo "Build artifacts:"
+                        ls -la dist/ || echo "No dist folder"
+                        ls -la dist/mock-api/ || echo "No mock-api folder"
+                    '''
+                }
+            }
+        }
+        
         stage('Setup Node.js') {
             steps {
                 sh '''

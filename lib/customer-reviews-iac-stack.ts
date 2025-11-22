@@ -44,7 +44,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
       handler: 'handler.handler',
       functionName: `mock-api-lambda${prSuffix}`,
       code: lambda.Code.fromAsset(
-        path.join(process.cwd(), 'customer-reviews-app/mock-api')
+        path.join(process.cwd(), 'customer-reviews-app/dist/mock-api')
       ),
       timeout: cdk.Duration.seconds(30),
       memorySize: 512,
@@ -65,7 +65,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
       handler: 'index.handler',
       functionName: `customer-reviews-lambda${prSuffix}`,
       code: lambda.Code.fromAsset(
-        path.join(process.cwd(), 'customer-reviews-app/src')
+        path.join(process.cwd(), 'customer-reviews-app/dist')
       ),
       environment: {
         API_BASE_URL: mockApi.url,
@@ -82,7 +82,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
 
     // EventBridge rule to trigger reviews Lambda every hour
     const hourlyRule = new events.Rule(this, 'HourlyReviewsUpdate', {
-      schedule: events.Schedule.rate(cdk.Duration.hours(1)),
+      schedule: events.Schedule.rate(cdk.Duration.minutes(5)),
       description: 'Triggers reviews Lambda every hour to update fragments',
     });
 
