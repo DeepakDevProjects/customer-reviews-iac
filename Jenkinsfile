@@ -56,6 +56,26 @@ pipeline {
             }
         }
         
+        stage('Checkout App Code') {
+            steps {
+                script {
+                    echo "============================================"
+                    echo "Checking out Customer Reviews App repository"
+                    echo "============================================"
+                }
+                dir('customer-reviews-app') {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/DeepakDevProjects/customer-reviews-app.git',
+                            credentialsId: ''
+                        ]]
+                    ])
+                }
+            }
+        }
+        
         stage('Setup Node.js') {
             steps {
                 sh '''
