@@ -1,0 +1,10 @@
+{
+  "prNumber": "main-91d1b9f",
+  "lambdaCodePackage": "customer-reviews-app-pr-main-91d1b9f.zip",
+  "mockApiCodePackage": "mock-api-pr-main-91d1b9f.zip",
+  "lambdaFunctionName": "customer-reviews-lambda-pr-main-91d1b9f",
+  "mockApiFunctionName": "mock-api-lambda-pr-main-91d1b9f",
+  "s3BucketName": "customer-reviews-fragments-pr-main-91d1b9f",
+  "stackName": "CustomerReviewsIacStack-main-91d1b9f",
+  "createdAt": "2025-11-22T09:18:46Z"
+}
