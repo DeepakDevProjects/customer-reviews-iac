@@ -83,7 +83,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
 
     // EventBridge rule to trigger reviews Lambda every hour
     const hourlyRule = new events.Rule(this, 'HourlyReviewsUpdate', {
-      schedule: events.Schedule.rate(cdk.Duration.minutes(5)),
+      schedule: events.Schedule.rate(cdk.Duration.hours(1)),
       description: 'Triggers reviews Lambda every hour to update fragments',
     });
 

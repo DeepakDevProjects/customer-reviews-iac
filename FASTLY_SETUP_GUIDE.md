@@ -2,10 +2,10 @@
 
 ## What We've Built So Far
 
-✅ **Lambda Function** - Generates HTML fragments (`product-a.html`, `product-b.html`) every 5 minutes  
+✅ **Lambda Function** - Generates HTML fragments (`product-a.html`, `product-b.html`) every 1 hour  
 ✅ **Main HTML Page** - `index.html` with ESI includes that references the fragments  
 ✅ **S3 Bucket** - Stores all HTML files with public read access  
-✅ **EventBridge** - Triggers Lambda every 5 minutes to update reviews  
+✅ **EventBridge** - Triggers Lambda every 1 hour to update reviews  
 
 ## What's Next: Fastly CDN Setup
 
@@ -200,7 +200,7 @@ Example: `https://your-service-name.global.ssl.fastly.net/`
 
 ```
 ┌─────────────────┐
-│  EventBridge    │  Every 5 minutes
+│  EventBridge    │  Every 1 hour
 │  (Cron Job)     │  ──────────────┐
 └─────────────────┘                │
                                     ▼
@@ -274,7 +274,7 @@ After setup, you'll have:
 You've successfully set up:
 - ✅ Server-side rendering using ESI
 - ✅ CDN for fast global delivery
-- ✅ Automated content updates every 5 minutes
+- ✅ Automated content updates every 1 hour
 - ✅ Composed HTML page from multiple fragments
 
 **Congratulations!** 🎉 You've built a complete server-side rendered application using AWS Lambda, S3, EventBridge, and Fastly CDN!
