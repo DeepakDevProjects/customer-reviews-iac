@@ -71,6 +71,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
         API_BASE_URL: mockApi.url,
         PRODUCT_IDS: 'product-a,product-b',
         OUTPUT_BUCKET: reviewsBucket.bucketName,
+        AWS_REGION: this.region,
       },
       timeout: cdk.Duration.minutes(5),
       memorySize: 512,
@@ -107,6 +108,11 @@ export class CustomerReviewsIacStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'ReviewsLambdaArn', {
       value: reviewsLambda.functionArn,
       description: 'ARN of the reviews processing Lambda',
+    });
+
+    new cdk.CfnOutput(this, 'MainPageURL', {
+      value: `https://${reviewsBucket.bucketName}.s3.${this.region}.amazonaws.com/index.html`,
+      description: 'Main HTML page with ESI includes (for Fastly CDN)',
     });
   }
 }
