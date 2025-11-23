@@ -64,14 +64,33 @@ pipeline {
                     echo "============================================"
                 }
                 dir('customer-reviews-app') {
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: '*/main']],
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/DeepakDevProjects/customer-reviews-app.git',
-                            credentialsId: ''
-                        ]]
-                    ])
+                    script {
+                        // Try to checkout PR branch first, fallback to main
+                        def branchName = "feature/pr-${PR_NUMBER}"
+                        echo "Attempting to checkout branch: ${branchName}"
+                        
+                        try {
+                            checkout([
+                                $class: 'GitSCM',
+                                branches: [[name: "*/${branchName}"]],
+                                userRemoteConfigs: [[
+                                    url: 'https://github.com/DeepakDevProjects/customer-reviews-app.git',
+                                    credentialsId: ''
+                                ]]
+                            ])
+                            echo "✅ Successfully checked out branch: ${branchName}"
+                        } catch (Exception e) {
+                            echo "⚠️ Branch ${branchName} not found, falling back to main"
+                            checkout([
+                                $class: 'GitSCM',
+                                branches: [[name: '*/main']],
+                                userRemoteConfigs: [[
+                                    url: 'https://github.com/DeepakDevProjects/customer-reviews-app.git',
+                                    credentialsId: ''
+                                ]]
+                            ])
+                        }
+                    }
                 }
             }
         }
