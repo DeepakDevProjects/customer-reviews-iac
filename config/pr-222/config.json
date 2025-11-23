@@ -1,0 +1,10 @@
+{
+  "prNumber": "222",
+  "lambdaCodePackage": "customer-reviews-app-pr-222.zip",
+  "mockApiCodePackage": "mock-api-pr-222.zip",
+  "lambdaFunctionName": "customer-reviews-lambda-pr-222",
+  "mockApiFunctionName": "mock-api-lambda-pr-222",
+  "s3BucketName": "customer-reviews-fragments-pr-222",
+  "stackName": "CustomerReviewsIacStack-222",
+  "createdAt": "2025-11-23T14:38:11Z"
+}
