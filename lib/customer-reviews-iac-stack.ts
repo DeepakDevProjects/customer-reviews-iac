@@ -71,7 +71,7 @@ export class CustomerReviewsIacStack extends cdk.Stack {
         API_BASE_URL: mockApi.url,
         PRODUCT_IDS: 'product-a,product-b',
         OUTPUT_BUCKET: reviewsBucket.bucketName,
-        AWS_REGION: this.region,
+        // Note: AWS_REGION is automatically provided by Lambda runtime, no need to set it
       },
       timeout: cdk.Duration.minutes(5),
       memorySize: 512,
