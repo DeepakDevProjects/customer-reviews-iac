@@ -1,0 +1,10 @@
+{
+  "prNumber": "123",
+  "lambdaCodePackage": "customer-reviews-app-pr-123.zip",
+  "mockApiCodePackage": "mock-api-pr-123.zip",
+  "lambdaFunctionName": "customer-reviews-lambda-pr-123",
+  "mockApiFunctionName": "mock-api-lambda-pr-123",
+  "s3BucketName": "customer-reviews-fragments-pr-123",
+  "stackName": "CustomerReviewsIacStack-123",
+  "createdAt": "2025-11-23T10:52:24Z"
+}
